@@ -15,7 +15,31 @@ npm install iceoryx-nodejs
 ## Environment
  - There is only linux environment tested right now
  
-## Example
+ ## Example request/response
+
+ Client
+```javascript
+const iceoryx = require('iceoryx-nodejs')
+
+iceoryx.setIoxProcessName("client_test");
+
+const client = new iceoryx.IceoryxClient();
+
+let resp = client.sendMessage("{koko : 10}");
+console.log("got some resp:" + resp)
+```
+
+Server
+```javascript
+const iceoryx = require('iceoryx-nodejs')
+
+iceoryx.setIoxProcessName("server_test");
+
+const server = new iceoryx.IceoryxServer();
+server.listen();
+```
+
+## Example subsriber/publisher
 ```javascript
 const iceoryx = require('iceoryx-nodejs')
 

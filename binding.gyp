@@ -4,7 +4,7 @@
       "target_name": "iceoryx",
       "cflags!": [ "-fno-exceptions", "-fno-rtti" ],
       "cflags_cc!": [ "-fno-exceptions", "-fno-rtti" ],
-      "sources": [ "src/iceoryx.cc", "src/iceoryx_subscriber.cc", "src/iceoryx_publisher.cc" ],
+      "sources": [ "src/iceoryx.cc", "src/iceoryx_subscriber.cc", "src/iceoryx_publisher.cc" , "src/iceoryx_client.cc", "src/iceoryx_server.cc" ], 
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")",
         "<!(echo $ICEORYX_NODEJS_INCLUDE)",

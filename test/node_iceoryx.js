@@ -7,7 +7,7 @@ const canTopicCallback = (data, data2) => {
     console.log(data.data.toString());
 }
 
-if(appArgs[1] === "subscriber") {
+if (appArgs[1] === "subscriber") {
     const service = new iceoryx.IceoryxSubscriber(["Test-app", "Test-group", "topic"], canTopicCallback);
     process.on("exit", () => {
         console.log(service);
@@ -32,9 +32,9 @@ if(appArgs[1] === "subscriber") {
 }
 
 const BlockThread = async () => {
-    while(1) {
+    while (1) {
         await new Promise(resolve => setTimeout(resolve, 5000));
-    }   
+    }
 }
 
 BlockThread();

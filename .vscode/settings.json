@@ -1,0 +1,5 @@
+{
+    "files.exclude": {
+        "!test/node_iceoryx.js": true
+    }
+}

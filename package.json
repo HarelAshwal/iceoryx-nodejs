@@ -1,6 +1,6 @@
 {
-  "name": "opsyslidar/iceoryx-nodejs",
-  "version": "0.0.3",
+  "name": "iceoryx-nodejs-extended",
+  "version": "0.0.4",
   "description": "Nodejs wrapper of iceoryx",
   "main": "index.js",
   "publishConfig": {

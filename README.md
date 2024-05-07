@@ -19,7 +19,7 @@ npm install iceoryx-nodejs
 
  Client
 ```javascript
-const iceoryx = require('iceoryx-nodejs')
+const iceoryx = require('iceoryx-nodejs-extended')
 
 iceoryx.setIoxProcessName("client_test");
 
@@ -31,7 +31,7 @@ console.log("got some resp:" + resp)
 
 Server
 ```javascript
-const iceoryx = require('iceoryx-nodejs')
+const iceoryx = require('iceoryx-nodejs-extended')
 
 iceoryx.setIoxProcessName("server_test");
 
@@ -41,7 +41,7 @@ server.listen();
 
 ## Example subsriber/publisher
 ```javascript
-const iceoryx = require('iceoryx-nodejs')
+const iceoryx = require('iceoryx-nodejs-extended')
 
 // There must be name of iox process
 // Second param - if "publisher" then application will push some JSON

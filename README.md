@@ -24,6 +24,7 @@ const iceoryx = require('iceoryx-nodejs-extended')
 iceoryx.setIoxProcessName("client_test");
 
 const client = new iceoryx.IceoryxClient();
+// or pass true to IceoryxClient for verbose mode
 
 let resp = client.sendMessage("{koko : 10}");
 console.log("got some resp:" + resp)

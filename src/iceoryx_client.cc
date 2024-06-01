@@ -1,4 +1,5 @@
 #include "iceoryx_client.h"
+#include <iostream>
 
 Napi::Object IceoryxClient::Init(Napi::Env env, Napi::Object exports)
 {
@@ -20,15 +21,27 @@ IceoryxClient::IceoryxClient(const Napi::CallbackInfo &info) : Napi::ObjectWrap<
 {
     Napi::Env env = info.Env();
 
-    int length = info.Length();
+    if (info.Length() == 1)
+    {
+        if (!info[0].IsBoolean())
+        {
+            Napi::TypeError::New(env, "Boolean expected").ThrowAsJavaScriptException();
+            return;
+        }
+        else
+        {
+            verbose_mode = info[0].As<Napi::Boolean>().Value();
 
-    // if (length <= 0 || !info[0].IsArray())
-    // {
-    //     Napi::TypeError::New(env, "Wrong paramemters").ThrowAsJavaScriptException();
-    //     return;
-    // }
-
-    // Napi::Array lIoxConfStrings = info[0].As<Napi::Array>();
+            if (verbose_mode)
+            {
+                std::cout << "Verbose mode enabled" << std::endl;
+            }
+            else
+            {
+                std::cout << "Verbose mode disabled" << std::endl;
+            }
+        }
+    }
 
     iox::popo::ClientOptions options;
     options.responseQueueCapacity = 1U;
@@ -73,7 +86,7 @@ Napi::Value IceoryxClient::SendMessage(const Napi::CallbackInfo &info)
             _ctx.expectedResponseSequenceId = _ctx.requestSequenceId;
             _ctx.requestSequenceId += 1;
             std::copy(req.begin(), req.end(), request->data);
-            printf( "Send Request: %s", req.c_str());
+            if (verbose_mode) printf( "Send Request: %s", req.c_str());
 
             request.send().or_else([&](auto &error) { printf( "Could not send Request! %s", error); }); })
         .or_else([](auto &error)
@@ -92,7 +105,7 @@ Napi::Value IceoryxClient::SendMessage(const Napi::CallbackInfo &info)
                 if (receivedSequenceId == _ctx.expectedResponseSequenceId)
                 {
                     resp = std::string(response->data);
-                    printf(  "Got Response : %s\n", resp.c_str());
+                    if (verbose_mode)  printf(  "Got Response : %s\n", resp.c_str());
                 }
                 else
                 {

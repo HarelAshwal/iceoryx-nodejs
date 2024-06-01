@@ -1,6 +1,6 @@
 {
   "name": "iceoryx-nodejs-extended",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Nodejs wrapper of iceoryx",
   "main": "index.js",
   "publishConfig": {

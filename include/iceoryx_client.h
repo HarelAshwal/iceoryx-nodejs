@@ -33,6 +33,7 @@ private:
     iox::popo::WaitSet<> _waitset;
 
     // Add any private members as needed
+    bool verbose_mode = false;
 };
 
 #endif // ICEORYX_CLIENT_H
